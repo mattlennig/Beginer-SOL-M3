@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.18;
+
+contract HyToken 
+{
+    string public tokenname = "COIN";
+
+    string public tokenAbbry = "CN";
+    uint256 public totalsupply = 0;
+
+    mapping(address => uint256) public balance;
+
+    function minting(address addr, uint256 value) public 
+    {
+        totalsupply += value;
+        balance[addr] += value;
+        
+        }
+
+    function burn(address addr, uint256 value) public 
+    {
+        if (balance[addr] >= value) 
+        {
+            totalsupply -= value;
+            balance[addr] -= value;
+        }
+    }
+}
